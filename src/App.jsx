@@ -5,7 +5,7 @@ import './App.css';
 const URL = 'https://uploadimg-back.onrender.com/upload';
 
 function App() {
-  const [uploadImage, setUploadImage] = useState({ url: '' });
+  const [uploadImage, setUploadImage] = useState({ urls: [] });
   const [msg, setMsg] = useState('');
 
   const createImage = async (newImage) => {
@@ -28,7 +28,7 @@ function App() {
   };
 
   const handleSubmit = (e) => {
-    if (uploadImage.url === '') {
+    if (uploadImage.urls === '') {
       return;
     }
     e.preventDefault();
@@ -37,9 +37,9 @@ function App() {
   };
 
   const handleFileUpload = async (e) => {
-    const file = e.target.files[0];
-    const base64 = await convertToBase64(file);
-    setUploadImage({ ...uploadImage, url: base64 });
+    const files = e.target.files;
+    const base64 = await convertToBase64(files);
+    setUploadImage({ ...uploadImage, urls: base64 });
   };
 
   return (
@@ -52,6 +52,7 @@ function App() {
           id="file-upload"
           accept="image/*"
           onChange={(e) => handleFileUpload(e)}
+          multiple
         />
         <button type="submit">Upload</button>
       </form>
@@ -60,17 +61,22 @@ function App() {
   );
 }
 
-const convertToBase64 = async (file) => {
-  return new Promise((resolve, reject) => {
-    const fileReader = new FileReader();
-    fileReader.readAsDataURL(file);
-    fileReader.onload = () => {
-      resolve(fileReader.result);
-    };
-    fileReader.onerror = (error) => {
-      reject(error);
-    };
-  });
+const convertToBase64 = async (files) => {
+  const base64 = [];
+  for (let i = 0; i < files.length; i++) {
+    const url = await new Promise((resolve, reject) => {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(files[i]);
+      fileReader.onload = () => {
+        resolve(fileReader.result);
+      };
+      fileReader.onerror = (error) => {
+        reject(error);
+      };
+    });
+    base64.push(url);
+  }
+  return base64;
 };
 
 export default App;
