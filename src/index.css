@@ -16,3 +16,18 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 }
+
+html,
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+footer {
+  color: #000000;
+  text-align: center;
+  font-size: 12px;
+  margin-top: auto;
+}

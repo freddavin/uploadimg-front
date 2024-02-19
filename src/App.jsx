@@ -15,16 +15,17 @@ function App() {
       .then((res) => {
         const { status } = res;
         if (status === 201) {
-          setMsg('Imagem enviada com sucesso!');
-          // alert('Obrigado! Imagem enviada com sucesso!');
+          setMsg(
+            `${
+              newImage.urls.length > 1 ? 'Imagens enviadas' : 'Imagem enviada'
+            } com sucesso!`
+          );
           return;
         }
         setMsg('Upload falhou!');
-        // alert('Falha no envio');
       })
       .catch(() => {
         setMsg('Upload falhou!');
-        // alert('Falha no envio');
       });
   };
 
