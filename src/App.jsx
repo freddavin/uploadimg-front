@@ -8,16 +8,27 @@ function App() {
   const [uploadImage, setUploadImage] = useState({ url: '' });
 
   const createImage = async (newImage) => {
-    axios.post(URL, newImage);
+    axios.post(URL, newImage).then((res) => {
+      const { status } = res;
+      if (status === 201) {
+        alert('Obrigado! Imagem enviada com sucesso!');
+        return;
+      }
+      alert('Falha no envio');
+    });
   };
 
   const handleSubmit = (e) => {
+    if (uploadImage.url === '') {
+      return;
+    }
     e.preventDefault();
-    createImage(uploadImage);
+    createImage(uploadImage, e);
   };
 
   const handleFileUpload = async (e) => {
     const file = e.target.files[0];
+    console.log(file);
     const base64 = await convertToBase64(file);
     setUploadImage({ ...uploadImage, url: base64 });
   };
@@ -29,6 +40,7 @@ function App() {
           type="file"
           name="url"
           id="file-upload"
+          accept="image/*"
           onChange={(e) => handleFileUpload(e)}
         />
         <button type="submit">Upload</button>
