@@ -9,25 +9,79 @@
   margin-right: auto;
 }
 
+.App::before {
+  content: '';
+  background-image: url('91256.jpg');
+  background-size: cover;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  opacity: 0.2;
+}
+
+.image {
+  margin-top: 10px;
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
+  position: relative;
+}
+
+.image img {
+  margin-left: -70px;
+  bottom: 0;
+  width: 300px;
+}
+
+h1 {
+  font-family: 'Alex Brush', cursive;
+  font-weight: 400;
+  font-style: normal;
+  margin: 0;
+  margin-top: 20px;
+  padding-bottom: 50px;
+  position: relative;
+}
+
 form {
   display: flex;
   justify-content: center;
   flex-direction: column;
   text-align: center;
-}
-
-h1 {
-  margin: 0;
-  margin-top: 1em;
-  padding-bottom: 1em;
+  width: 100%;
+  position: relative;
 }
 
 button {
-  margin-top: 1em;
-  height: 35px;
-  margin-bottom: 2em;
+  margin-top: 30px;
+  margin-bottom: 5px;
+  background-color: rgb(26, 54, 22);
+  color: white;
+  padding: 0.5rem;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  font-size: 18px;
+  width: auto;
 }
 
 span {
   font-size: 14px;
+}
+
+label {
+  background-color: rgb(98, 146, 91);
+  color: white;
+  padding: 0.5rem;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  font-size: 18px;
+  width: auto;
+}
+
+#file-chosen {
+  margin-top: 5px;
+  margin-left: 0.3rem;
 }

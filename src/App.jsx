@@ -7,6 +7,7 @@ const URL = 'https://uploadimg-back.onrender.com/upload';
 function App() {
   const [uploadImage, setUploadImage] = useState({ urls: [] });
   const [msg, setMsg] = useState('');
+  const [fileChosen, setfileChosen] = useState('');
 
   const createImage = async (newImage) => {
     axios
@@ -28,7 +29,7 @@ function App() {
   };
 
   const handleSubmit = (e) => {
-    if (uploadImage.urls === '') {
+    if (uploadImage.urls.length === 0) {
       return;
     }
     e.preventDefault();
@@ -38,13 +39,25 @@ function App() {
 
   const handleFileUpload = async (e) => {
     const files = e.target.files;
+    if (files.length > 0) {
+      setfileChosen(
+        `${files.length} ${
+          files.length > 1 ? 'fotos escolhidas' : 'foto escolhida'
+        }`
+      );
+    }
     const base64 = await convertToBase64(files);
     setUploadImage({ ...uploadImage, urls: base64 });
   };
 
   return (
     <div className="App">
-      <h1>Wedding Photo</h1>
+      <div className="image">
+        <img src="casal.jpg"></img>
+      </div>
+
+      <h1>Laliny & Frederico</h1>
+
       <form onSubmit={handleSubmit}>
         <input
           type="file"
@@ -53,9 +66,13 @@ function App() {
           accept="image/*"
           onChange={(e) => handleFileUpload(e)}
           multiple
+          hidden
         />
-        <button type="submit">Upload</button>
+        <label htmlFor="file-upload">Escolher fotos</label>
+        <span id="file-chosen">{fileChosen}</span>
+        <button type="submit">Enviar</button>
       </form>
+
       {msg && <span>{msg}</span>}
     </div>
   );
