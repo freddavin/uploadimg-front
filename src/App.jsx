@@ -38,6 +38,7 @@ function App() {
   };
 
   const handleFileUpload = async (e) => {
+    setMsg('');
     const files = e.target.files;
     if (files.length > 0) {
       setfileChosen(
