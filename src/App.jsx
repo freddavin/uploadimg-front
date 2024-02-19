@@ -6,16 +6,25 @@ const URL = 'https://uploadimg-back.onrender.com/upload';
 
 function App() {
   const [uploadImage, setUploadImage] = useState({ url: '' });
+  const [msg, setMsg] = useState('');
 
   const createImage = async (newImage) => {
-    axios.post(URL, newImage).then((res) => {
-      const { status } = res;
-      if (status === 201) {
-        alert('Obrigado! Imagem enviada com sucesso!');
-        return;
-      }
-      alert('Falha no envio');
-    });
+    axios
+      .post(URL, newImage)
+      .then((res) => {
+        const { status } = res;
+        if (status === 201) {
+          setMsg('Imagem enviada com sucesso!');
+          // alert('Obrigado! Imagem enviada com sucesso!');
+          return;
+        }
+        setMsg('Upload falhou!');
+        // alert('Falha no envio');
+      })
+      .catch(() => {
+        setMsg('Upload falhou!');
+        // alert('Falha no envio');
+      });
   };
 
   const handleSubmit = (e) => {
@@ -23,6 +32,7 @@ function App() {
       return;
     }
     e.preventDefault();
+    setMsg('Enviando... Aguarde um instante.');
     createImage(uploadImage, e);
   };
 
@@ -34,6 +44,7 @@ function App() {
 
   return (
     <div className="App">
+      <h1>Wedding Photo</h1>
       <form onSubmit={handleSubmit}>
         <input
           type="file"
@@ -44,6 +55,7 @@ function App() {
         />
         <button type="submit">Upload</button>
       </form>
+      {msg && <span>{msg}</span>}
     </div>
   );
 }
