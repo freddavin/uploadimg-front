@@ -28,7 +28,6 @@ function App() {
 
   const handleFileUpload = async (e) => {
     const file = e.target.files[0];
-    console.log(file);
     const base64 = await convertToBase64(file);
     setUploadImage({ ...uploadImage, url: base64 });
   };
