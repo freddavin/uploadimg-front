@@ -10,7 +10,7 @@
   margin-right: auto;
 }
 
-.image {
+/* .image {
   margin-top: 10px;
   border-radius: 50%;
   width: 150px;
@@ -23,6 +23,22 @@
   margin-left: -70px;
   bottom: 0;
   width: 300px;
+} */
+
+.image {
+  margin-top: 10px;
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
+  position: relative;
+}
+
+.image img {
+  margin-left: -40px;
+  margin-top: -15px;
+  bottom: 0;
+  width: 210px;
 }
 
 h1 {

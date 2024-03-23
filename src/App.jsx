@@ -55,10 +55,10 @@ function App() {
   return (
     <div className="App">
       <div className="image">
-        <img src="casal.jpg"></img>
+        <img src="casal2.jpeg"></img>
       </div>
 
-      <h1>Laliny & Frederico</h1>
+      <h1>Leonora & Diego</h1>
 
       <form onSubmit={handleSubmit}>
         <input
