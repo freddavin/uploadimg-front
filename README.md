@@ -1,8 +1,19 @@
-# React + Vite
+# UploadIMG
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Projeto pessoal para envio de múltiplas fotos durante um evento de casamento.
 
-Currently, two official plugins are available:
+Os convidados podem acessar uma página web para o envio das fotos tiradas durante o evento para compor o album de lembranças dos noivos.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Após o envio as fotos são armazenadas em uma pasta determinada do Google Drive. Com isso, no decorrer do evento, o acesso as fotos é fácil e rápido.
+
+## Backend
+
+O projeto possui um repositório separado para o backend acessado pelo link: https://github.com/freddavin/uploadimg-back
+
+## Tecnologias utilizadas
+
+- React
+
+## Link
+
+Link de acesso ao projeto: https://leonora-e-diego.onrender.com/
